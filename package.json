@@ -4,6 +4,18 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "build": "run-p build:client build:netlify-functions",
+    "build-with-storybook": "run-p build:*",
+    "build:client": "yarn workspace client run build",
+    "build:storybook": "yarn workspace ui-components build-storybook && cp -r packages/ui-components/.out packages/client/public/storybook",
+    "develop": "run-p develop:*",
+    "develop:clean": "yarn workspace client run clean",
+    "develop:client": "yarn workspace client run develop",
+    "develop:storybook": "yarn workspace ui-components run storybook",
+    "test": "run-p test:*",
+    "test:client": "yarn workspace client run test"
+  },
   "dependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
